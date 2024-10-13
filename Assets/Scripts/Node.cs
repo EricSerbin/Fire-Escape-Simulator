@@ -49,7 +49,7 @@ public class Node : IComparable<Node>
         
     }
 
-    public int CompareTo(Node other) //this goes to the java class and we give an implemenatioant
+    public int CompareTo(Node other) //this goes to the java class and we give an implementation
     {
         if (this.priority < other.priority)
         {

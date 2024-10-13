@@ -27,11 +27,9 @@ public class ClearCells : MonoBehaviour
             for (int j = 0; j < my_graph.getHeight(); j++)
             {
                 my_graph.nodes[i, j].nodeType = NodeType.Open;
-                //Debug.Log("GARY THE clearCell i: " + i + " j: " + j);
             }
             Debug.Log("\n");
         }
         my_pathFinder.ShowColors();
-        //my_graph;
     }
 }

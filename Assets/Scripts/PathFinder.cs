@@ -62,7 +62,6 @@ public class PathFinder : MonoBehaviour
     public void UpdateGraphView(Graph tempGraph)
     {
         Destroy(m_graphView);
-        // m_graphView.UpdateBoundaries(tempGraph);
         m_graphView.Init(tempGraph); //this was used for a method for resizing the grid at runtime, which was not feasible
 
     }
@@ -79,6 +78,8 @@ public class PathFinder : MonoBehaviour
                 UnityEngine.Debug.Log(" i is " + i + " and j is " + j);
                 UnityEngine.Debug.Log("this is i j nodes"+m_graph.nodes[i, j]);
                 UnityEngine.Debug.Log(" graphnodes i j type is " + m_graph.nodes[i, j].nodeType);
+
+                //checks and colors each node based on node datatype
                 if (m_graph.nodes[i, j].nodeType == NodeType.Open)
                 {
                     graphView.nodeViews[i, j].ColorNode(openCellColor);//green
@@ -89,7 +90,7 @@ public class PathFinder : MonoBehaviour
                     graphView.nodeViews[i, j].ColorNode(blockedCellColor);
 
                 }
-                else if (m_graph.nodes[i,j].nodeType == NodeType.Person && m_graph.nodes[i, j].nodeMode == Mode.Safe)
+                else if (m_graph.nodes[i,j].nodeType == NodeType.Person && m_graph.nodes[i, j].nodeMode == Mode.Safe) 
                 {
                     graphView.nodeViews[i, j].ColorNode(safePersonCellColor);
                 }
@@ -244,22 +245,7 @@ public class PathFinder : MonoBehaviour
                     m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next = dummyNode;
                     m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].occupied = true;
 
-                    //UnityEngine.Debug.Log(" the tempNode after swap is " + tempNode.xIndex + ", " + tempNode.yIndex + " type: " + tempNode.nodeType + "mode: " + tempNode.nodeMode + " fireX: " + tempNode.fireX + " fireY: " + tempNode.fireY);
-                    //UnityEngine.Debug.Log(" the dummyNode after swap is " + dummyNode.xIndex + ", " + dummyNode.yIndex + " type: " + dummyNode.nodeType + "mode: " + dummyNode.nodeMode + " fireX: " + dummyNode.fireX + " fireY: " + dummyNode.fireY);
-                    //UnityEngine.Debug.Log(" the nextNode after swap is " + nextNode.xIndex + ", " + nextNode.yIndex + " type: " + nextNode.nodeType + "mode: " + nextNode.nodeMode + " fireX: " + nextNode.fireX + " fireY: " + nextNode.fireY);
-
-                    //UnityEngine.Debug.Log(" the nextNode is " + nextNode.xIndex + ", " + nextNode.yIndex+" type: "+ nextNode.nodeType+ "mode: "+ nextNode.nodeMode);
-                    //UnityEngine.Debug.Log(" the nextNodeParent is " + nextNodeParent.xIndex + ", " + nextNodeParent.yIndex + " type: " + nextNodeParent.nodeType + "mode: " + nextNodeParent.nodeMode);
-                    //UnityEngine.Debug.Log(" the dummyNode is " + dummyNode.xIndex + ", " + dummyNode.yIndex + " type: " + dummyNode.nodeType + "mode: " + dummyNode.nodeMode);
-                    //UnityEngine.Debug.Log(" the oldNodeParent is " + oldNodeParent.xIndex + ", " + oldNodeParent.yIndex + " type: " + oldNodeParent.nodeType + "mode: " + oldNodeParent.nodeMode);
-                    
-                    //UnityEngine.Debug.Log("and now the nodes i j is " + m_graph.nodes[i, j].xIndex + ", " + m_graph.nodes[i, j].yIndex + " type: " + m_graph.nodes[i, j].nodeType + "mode: " + m_graph.nodes[i, j].nodeMode + " and fire x is " + m_graph.nodes[i, j].fireX + " , fire y is " + m_graph.nodes[i, j].fireY);
-                    //UnityEngine.Debug.Log("and now the nodes i j next is " + m_graph.nodes[i, j].next.xIndex + ", " + m_graph.nodes[i, j].next.yIndex + " type: " + m_graph.nodes[i, j].next.nodeType + "mode: " + m_graph.nodes[i, j].next.nodeMode + " and fire x is " + m_graph.nodes[i, j].next.fireX + " , fire y is " + m_graph.nodes[i, j].next.fireY);
-
-                    //UnityEngine.Debug.Log(" and nodes dumbindex i j is " +m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].xIndex + ", " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].yIndex + " type: " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].nodeType + "mode: " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].nodeMode+ " and fire x is "+ m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].fireX+" , fire y is "+ m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].fireY);
-                    //UnityEngine.Debug.Log(" and nodes dumbindex i j next is " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.xIndex + ", " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.yIndex + " type: " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.nodeType + "mode: " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.nodeMode + " and fire x is " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.fireX + " , fire y is " + m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.fireY);
-
-                   
+       
                     if ((m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.nodeType == NodeType.Person && m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.nodeMode == Mode.Evacuating) && (m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].xIndex == m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.xIndex &&
                         m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].yIndex == m_graph.nodes[dummyNode.xIndex, dummyNode.yIndex].next.yIndex))
                     {
@@ -283,14 +269,12 @@ public class PathFinder : MonoBehaviour
                     tempNode.fireY = nextNode.fireY;
                     tempNode.priority = nextNode.priority;
                     tempNode.occupied = nextNode.occupied;
-                    //tempNode.fireTimer = nextNode.fireTimer;
 
                     nextNode.fireX = dummyNode.fireX;
                     nextNode.fireY = dummyNode.fireY;
                     nextNode.priority = dummyNode.priority;
                     nextNode.nodeMode = dummyNode.nodeMode;
                     nextNode.nodeType = dummyNode.nodeType;
-                    //nextNode.fireTimer = dummyNode.fireTimer;
 
                     dummyNode.fireX = tempNode.fireX;
                     dummyNode.fireY = tempNode.fireY;
@@ -298,8 +282,7 @@ public class PathFinder : MonoBehaviour
                     dummyNode.priority = tempNode.priority;
                     dummyNode.nodeMode = tempNode.nodeMode;
                     dummyNode.nodeType = tempNode.nodeType;
-                    //dummyNode.fireTimer = tempNode.fireTimer;
-                    //dummyNode.occupied = true;
+               
                   
                     m_graph.nodes[i, j].next = nextNode;
                     m_graph.nodes[i, j].occupied = false;

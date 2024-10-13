@@ -21,10 +21,8 @@ public class NodeView : MonoBehaviour
             tile.transform.position = node.position;
             tile.transform.localScale=new Vector3(1f - borderSize, 1, 1f-borderSize);
 
-            tileCollider.transform.localScale = new Vector3(1f - borderSize, 1, 1f - borderSize); 
+            tileCollider.transform.localScale = new Vector3(1f - borderSize, 1, 1f - borderSize);
             tileCollider.center = node.position;
-            //tileCollider is a box grid that has its point transformed to the position of node, and is scaled with it
-            //I originally wanted to use a mesh collider but had issues with raycasting. 
             
         }
     }
@@ -44,10 +42,5 @@ public class NodeView : MonoBehaviour
     {
         ColorNode(color, tile);
     }
-    /*public void DestroyTile()
-    {
-        Destroy(tile);
-    }*/
-
    
 }

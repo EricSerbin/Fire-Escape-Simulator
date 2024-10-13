@@ -108,19 +108,10 @@ public class MapData : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 map[x, y] = (int)char.GetNumericValue(lines[y][x]);
-                //Debug.Log(lines[y][x]+" ");
             }
-            //Debug.Log("\n");
         }
 
-        /* for (int y=0;y<height; y++)
-         {
-             for(int x=0;x<width;x++)
-             {
-                 map[x, y] = 0;//[x,y];
-             }
-         }*/
-        //map[10, 5] = 3;
+        
         map[10, 7] = 2;
         map[10, 8] = 3;
         map[2, 3] = 2;

@@ -19,18 +19,8 @@ public class RandomCells : MonoBehaviour
     // Update is called once per frame
     void clear()
     {
-        //GraphView my_graphView;// = GetComponent<GraphView>();
-        //        Graph my_graph = GetComponent<Graph>();
-        //public Graph m_graph;
-        //Graph my_graph = Graph.GetComponent<Graph>();
-
-        ///Graph my_graph = GetComponentInChildren<Graph>();
-        
-
-
-        //Graphy my_graph= 
+      
         Debug.Log("graph width is " + my_graph.getWidth() + "and graph height is " + my_graph.getHeight() + "\n");
-        //my_graphView = GetComponent<GraphView>();
 
         for (int i = 0; i < my_graph.getWidth(); i++)
         {

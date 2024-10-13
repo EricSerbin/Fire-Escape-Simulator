@@ -29,14 +29,6 @@ public class Graph : MonoBehaviour
     {
         this.m_height = m_height;
     }
-    //public int Width {  get { return m_width; } }
-    //public int Height { get { return m_height; } }
-
-    //public void setWidth(int m_width) {  { this.m_width = m_width; } }
-    //public void setHeight(int m_height) { { this.m_height= m_height; } }
-
-
-
 
     public static readonly Vector2[] allDirections =
     {
@@ -96,7 +88,6 @@ public class Graph : MonoBehaviour
     }
     public bool IsWithinBounds(int x, int y)
     {
-        //Debug.Log("x: " + x + "and y: " + y + " checked");
         return (x >= 0 && x < m_width && y >= 0 && y < m_height);//allDirections[x,y]
     }
     
@@ -123,7 +114,7 @@ public class Graph : MonoBehaviour
     {
         return GetModNeighbors(x, y, nodes, allDirections);
     }
-    public float GetNodeDistance(Node source, Node target) //euclidean
+    public float GetNodeDistance(Node source, Node target) //euclidean dist
     {
         int dx = Mathf.Abs(source.xIndex - target.xIndex);
         int dy = Mathf.Abs(source.yIndex - target.yIndex);
@@ -158,12 +149,6 @@ public class Graph : MonoBehaviour
         //function checks in every direction and uses manhattan distance between stored fire location and new locations. If they are open without fire coordinates
         //they are valid destinations and will be weighed. This function uses heighest weights furthest from the fire while avoiding obstacles
 
-        //Debug.Log(" crabTest x y fireX is " + nodeArray[x, y].fireX + " and fireY is " + nodeArray[x, y].fireY);
-        //Debug.Log(" fireNode crabTest x y fireX is " + fireNode.fireX + " and fireY is " + fireNode.fireY);
-        //Debug.Log(" fireNode crabTest x y is " + fireNode.xIndex+ " and fireY is " + fireNode.yIndex);
-        //Debug.Log(" crabTest actual x is " + nodeArray[x, y].xIndex + " and y is " + nodeArray[x, y].yIndex);
-        //Debug.Log(" crabTest fireLoc x is " + tempArr[0] + " and y is " + tempArr[1]);
-
         //fireNode.xIndex = tempArr[0];
         //fireNode.yIndex = tempArr[1];
 
@@ -178,10 +163,7 @@ public class Graph : MonoBehaviour
             int newX = ((xHolder % m_width) + m_width) % m_width;
             int newY = ((yHolder % m_height) + m_height) % m_height;//same as get neighbors but using modulo, accounting for negatives
 
-            //Debug.Log(" dir is " + dir);
-            //Debug.Log(" the x is " + newX + " and the y is " + newY);
-            //Debug.Log("I don't like smoke, firex is " + nodeArray[x,y].fireX+ "and firey is "+ nodeArray[x,y].fireY);
-            //Debug.Log("But with the other things it's " + nodeArray[newX, newY].fireX + " and modded fireY  is " + nodeArray[newX, newY].fireY);
+            
             /*if (IsWithinBounds(newX, newY) && nodeArray[x, y].nodeType == NodeType.Person
                 && nodeArray[newX, newY] != null &&
                 nodeArray[newX, newY].nodeType == NodeType.Open && (nodeArray[x, y].fireX != -1 && nodeArray[x, y].fireX != -1))*/
@@ -211,8 +193,6 @@ public class Graph : MonoBehaviour
         if(fireTrip==true)
         {
             tempNode = sortNodes[0];
-            Debug.Log(" was it sortNodes that failed");
-            Debug.Log("\n\n\n\n");
             int tempIndex = 0;
             for (int i = 0; i < sortNodes.Count; i++)
             {
@@ -222,8 +202,7 @@ public class Graph : MonoBehaviour
                     UnityEngine.Debug.Log("for loop manhattan distance is " + sortNodes[i].distanceTraveled +"at index: "+ sortNodes[i].xIndex+", " + sortNodes[i].yIndex);
                     tempNode = sortNodes[i];
                     tempIndex = i;
-                    //tempNode.fireX = nodeArray[x, y].fireX;
-                    //tempNode.fireY = nodeArray[x, y].fireY;
+                 
                 }
             }
         }
@@ -337,9 +316,9 @@ public class Graph : MonoBehaviour
             &&
             nodeArray[newX, newY].nodeType == NodeType.Open &&
             (nodeArray[newX, newY].fireX == -1 && nodeArray[newX, newY].fireX == -1)) //seems like this trips if there's fire presumably
-                                                                                      // && (nodeArray[newX, newY].fireX != -1 && nodeArray[newX, newY].fireY != -1) may need to add x and y condition
+
             {
-                Debug.Log("I want a pony\n\n");
+                //Debug.Log("I want a pony\n\n");
                 fireTrip = true;
                 
                 //UnityEngine.Debug.Log(" the current node is " + nodeArray[newX, newY].xIndex + ", " + nodeArray[newX, newY].yIndex);
@@ -353,12 +332,10 @@ public class Graph : MonoBehaviour
             }
 
         }
-        //Debug.Log(" loop over\n\n");
         Node tempNode = nodeArray[x, y];
         if (fireTrip == true)
         {
             tempNode = sortNodes[0];
-            //Debug.Log(" fireTrip true");
             var randomizer = new System.Random();
             int randomIndex = randomizer.Next(0, sortNodes.Count);
             tempNode = sortNodes[randomIndex];

@@ -36,7 +36,6 @@ public class RandomBitmapCells : MonoBehaviour
     {
         
         Debug.Log("graph width is " + my_graph.getWidth() + "and graph height is " + my_graph.getHeight() + "\n");
-        //my_graphView = GetComponent<GraphView>();
         
 
         for (int i = 0; i < my_graph.getWidth(); i++)

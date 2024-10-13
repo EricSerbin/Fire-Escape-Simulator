@@ -39,17 +39,16 @@ public class GraphView : MonoBehaviour
 
         }
     }
-  //google graph quite
     public void UpdateBoundaries(Graph my_graph)
     {
-        //nodeViews.Destroy
-        //nodeViews.DestroyTile();
+      
        /* foreach(Node n in my_graph.nodes)
         {
             nodeViews[n.xIndex, n.yIndex].DestroyTile();// n.DestroyTile();
         }
         nodeViews = new NodeView[my_graph.getWidth(), my_graph.getHeight()];
-*/
+        */ 
+       //destructor test
         foreach (Node n in my_graph.nodes)
         {
             GameObject instance = Instantiate(nodeviewPrefab,

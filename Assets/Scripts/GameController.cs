@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
   
     public float timeStep = 0.1f; 
 
-    //he did say we could show this off to a prospective employer because its complex and a 400 level course
     // Start is called before the first frame update
     void Start()
     {
