@@ -1,3 +1,4 @@
+# Fire Escape Simulator 
 This program simulates a crowd evacuating during a fire. 
 
 This program utilizes the manhattan distances from fires to escape in the furthest direction possible, with an infinite grid. As the person's distance from the fire increases, they may eventually become safe.
